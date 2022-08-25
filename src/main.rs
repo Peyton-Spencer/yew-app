@@ -100,8 +100,7 @@ impl Component for App {
     }
 
     fn rendered(&mut self, ctx: &Context<Self>, first_render: bool) {
-        // On the first render of the component, we make the api request. I added a sleep
-        // to mimic a slow connection
+        // On the first render of the component, we make the api request.
         if first_render {
             let link = ctx.link().clone();
             wasm_bindgen_futures::spawn_local(async move {

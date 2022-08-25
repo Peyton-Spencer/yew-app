@@ -10,3 +10,4 @@ edition = "2021"
     gloo-net = { version="0.2", features = ["json"]}
     serde = { version = "1.0", features = ["derive"] }
     wasm-bindgen-futures = "0.4"
+

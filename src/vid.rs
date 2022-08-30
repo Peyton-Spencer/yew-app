@@ -24,7 +24,6 @@ pub fn video_details(VideosDetailsProps { video }: &VideosDetailsProps) -> Html 
     }
 }
 
-
 #[derive(Clone, Properties, PartialEq)]
 pub struct VideosListProps {
     pub videos: Vec<Video>,

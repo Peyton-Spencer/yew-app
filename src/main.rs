@@ -2,11 +2,9 @@ use gloo_net::http::Request;
 use yew::prelude::*;
 
 mod vid;
-use vid::Video;
-use vid::VideoDetails;
-use vid::VideosList;
+use vid::{Video, VideoDetails, VideosList};
 
-// Extracted the api request to it's own function
+// Extracted the api request to its own function
 // Box<dyn std::error::Error> means anything that looks like an error is okay
 async fn get_videos() -> Result<Vec<Video>, Box<dyn std::error::Error>> {
     let fetched_videos: Vec<Video> = Request::get("/tutorial/data.json")
@@ -47,8 +45,8 @@ impl Component for App {
 
     type Properties = ();
 
-    fn create(ctx: &Context<Self>) -> Self {
-        // When the component is created, we havent made the api request yet so
+    fn create(_ctx: &Context<Self>) -> Self {
+        // When the component is created, we haven't made the api request yet so
         // the videos are set to "loading" and there is no selected video
         Self {
             videos: RequestedVideos::Loading,
@@ -57,7 +55,6 @@ impl Component for App {
     }
 
     fn view(&self, ctx: &Context<Self>) -> Html {
-
         // Since we know the state of the request, we actually get the opportunity to display custom loading and
         // error markup (like a loading wheel) instead of having awkward blank space on slow connections.
         match self.videos.clone() {
@@ -91,7 +88,7 @@ impl Component for App {
         }
     }
 
-    fn update(&mut self, ctx: &Context<Self>, msg: Self::Message) -> bool {
+    fn update(&mut self, _ctx: &Context<Self>, msg: Self::Message) -> bool {
         match msg {
             AppMsg::SetVideos(res) => self.videos = res,
             AppMsg::SelectVideo(video) => self.selected_video = Some(video),
